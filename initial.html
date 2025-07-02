@@ -141,6 +141,13 @@
       border-radius: 8px;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
     }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e88e5;
+      color: #fff;
+      font-weight: 300;
+    }
     @media (max-width: 768px) {
       .section-box {
         padding: 20px;
@@ -159,68 +166,63 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1><img src="logo.jpg" alt="Health Club Logo">Health Club</h1>
-    <div class="hamburger" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i> Menu
-    </div>
-  </header>
-
-  <nav id="menuNav">
-    <ul>
-      <li><a href="#about" onclick="toggleMenu()"><i class="fas fa-heartbeat"></i> About</a></li>
-      <li><a href="#board-members" onclick="toggleMenu()"><i class="fas fa-users"></i> Board Members</a></li>
-      <li><a href="#faculty-coordinator" onclick="toggleMenu()"><i class="fas fa-chalkboard-teacher"></i> Faculty Coordinator</a></li>
-      <li><a href="#" onclick="toggleDropdown(event, 'events')"><i class="fas fa-calendar-alt"></i> Events ▾</a></li>
-      <ul id="events" class="dropdown" style="display:none;">
-        <li><a href="#events23" onclick="toggleMenu()">Events'23</a></li>
-        <li><a href="#events24" onclick="toggleMenu()">Events'24</a></li>
-      </ul>
-      <li><a href="#" onclick="toggleDropdown(event, 'gravitas')"><i class="fas fa-bolt"></i> Gravitas ▾</a></li>
-      <ul id="gravitas" class="dropdown" style="display:none;">
-        <li><a href="#gravitas23" onclick="toggleMenu()">Gravitas'23</a></li>
-        <li><a href="#gravitas24" onclick="toggleMenu()">Gravitas'24</a></li>
-      </ul>
-      <li><a href="#riviera25" onclick="toggleMenu()"><i class="fas fa-star"></i> Riviera'25</a></li>
-      <li><a href="#achievements" onclick="toggleMenu()"><i class="fas fa-trophy"></i> Achievements</a></li>
-      <li><a href="#blogs" onclick="toggleMenu()"><i class="fas fa-blog"></i> Blogs</a></li>
-      <li><a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Contact</a></li>
-    </ul>
-  </nav>
-
-  <section id="about">
-    <div class="section-box">
-      <h2>About</h2>
-      <p>Welcome to the Health Club at VIT! We promote well-being and awareness through engaging events and campaigns throughout the academic year.</p>
-      <div class="gallery-toggle">
-        <button onclick="toggleGallery('about-gallery')">Toggle Gallery</button>
-        <div id="about-gallery" class="gallery">
-          <img src="img1.jpg" alt="Gallery image 1">
-          <img src="img2.jpg" alt="Gallery image 2">
-          <img src="img3.jpg" alt="Gallery image 3">
-        </div>
+<header>
+  <h1><img src="logo.jpg" alt="Health Club Logo">Health Club</h1>
+  <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i> Menu
+  </div>
+</header>
+<nav id="menuNav">
+  <ul>
+    <li><a href="#about" onclick="toggleMenu()"><i class="fas fa-heartbeat"></i> About</a></li>
+    <li><a href="#board-members" onclick="toggleMenu()"><i class="fas fa-users"></i> Board Members</a></li>
+    <li><a href="#faculty-coordinator" onclick="toggleMenu()"><i class="fas fa-chalkboard-teacher"></i> Faculty Coordinator</a></li>
+    <li><a href="#events23" onclick="toggleMenu()"><i class="fas fa-calendar-alt"></i> Events'23</a></li>
+    <li><a href="#events24" onclick="toggleMenu()"><i class="fas fa-calendar-check"></i> Events'24</a></li>
+    <li><a href="#gravitas23" onclick="toggleMenu()"><i class="fas fa-bolt"></i> Gravitas'23</a></li>
+    <li><a href="#gravitas24" onclick="toggleMenu()"><i class="fas fa-bolt"></i> Gravitas'24</a></li>
+    <li><a href="#riviera25" onclick="toggleMenu()"><i class="fas fa-star"></i> Riviera'25</a></li>
+    <li><a href="#achievements" onclick="toggleMenu()"><i class="fas fa-trophy"></i> Achievements</a></li>
+    <li><a href="#blogs" onclick="toggleMenu()"><i class="fas fa-blog"></i> Blogs</a></li>
+    <li><a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Contact</a></li>
+  </ul>
+</nav>
+<section id="about">
+  <div class="section-box">
+    <h2>About</h2>
+    <p>Welcome to the Health Club at VIT! We promote well-being and awareness through engaging events and campaigns throughout the academic year.</p>
+    <div class="gallery-toggle">
+      <button onclick="toggleGallery('about-gallery')">Toggle Gallery</button>
+      <div id="about-gallery" class="gallery">
+        <img src="img1.jpg" alt="Gallery image 1">
+        <img src="img2.jpg" alt="Gallery image 2">
+        <img src="img3.jpg" alt="Gallery image 3">
       </div>
     </div>
-  </section>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menuNav');
-      menu.classList.toggle('show');
+  </div>
+</section>
+<!-- Event, Blog, Contact, Footer sections inserted here -->
+<footer>
+  &copy; 2025 Health Club VIT. All rights reserved.
+</footer>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('menuNav');
+    menu.classList.toggle('show');
+  }
+  function toggleDropdown(e, id) {
+    e.preventDefault();
+    const dropdown = document.getElementById(id);
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+  }
+  function toggleGallery(id) {
+    const gallery = document.getElementById(id);
+    if (gallery.style.display === 'grid') {
+      gallery.style.display = 'none';
+    } else {
+      gallery.style.display = 'grid';
     }
-    function toggleDropdown(e, id) {
-      e.preventDefault();
-      const dropdown = document.getElementById(id);
-      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-    }
-    function toggleGallery(id) {
-      const gallery = document.getElementById(id);
-      if (gallery.style.display === 'grid') {
-        gallery.style.display = 'none';
-      } else {
-        gallery.style.display = 'grid';
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
