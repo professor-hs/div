@@ -39,22 +39,57 @@
       display: flex;
       align-items: center;
     }
+    .hamburger {
+      display: block;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #0d47a1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #fff;
+      transition: background-color 0.3s ease;
+    }
+    .hamburger:hover {
+      background-color: #1565c0;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100%;
+      background: #1e88e5;
+      border-left: 3px solid #0d47a1;
+      transition: right 0.3s ease;
+      padding-top: 80px;
+      z-index: 999;
+    }
+    nav.show {
+      right: 0;
+    }
     nav ul {
-      display: flex;
-      flex-wrap: wrap;
       list-style: none;
+      padding: 0;
     }
     nav ul li {
-      margin-left: 15px;
+      margin: 15px 0;
     }
     nav ul li a {
       text-decoration: none;
       color: #fff;
       font-weight: 500;
-      transition: color 0.3s;
+      padding: 10px 20px;
+      display: block;
+      transition: background-color 0.3s;
     }
     nav ul li a:hover {
-      color: #ffe082;
+      background-color: #1565c0;
+    }
+    nav ul .dropdown {
+      padding-left: 20px;
+    }
+    nav ul .dropdown a {
+      font-size: 0.9rem;
     }
     section {
       padding: 100px 20px 60px;
@@ -84,28 +119,31 @@
       border: none;
       margin-top: 20px;
     }
-    .hamburger {
+    .gallery-toggle {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .gallery {
       display: none;
-      font-size: 24px;
-      cursor: pointer;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
     }
     @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #1e88e5;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        border-radius: 10px;
-        width: 200px;
-        padding: 10px;
+      .section-box {
+        padding: 20px;
       }
-      nav ul.show {
-        display: flex;
+      header h1 {
+        font-size: 18px;
       }
       .hamburger {
-        display: block;
+        font-size: 16px;
+        padding: 6px 10px;
       }
     }
   </style>
@@ -116,29 +154,62 @@
     <div class="hamburger" onclick="toggleMenu()">
       <i class="fas fa-bars"></i> Menu
     </div>
-    <nav>
-      <ul id="navMenu">
-        <li><a href="#about" onclick="toggleMenu()">About</a></li>
-        <li><a href="#board" onclick="toggleMenu()">Board Members</a></li>
-        <li><a href="#faculty" onclick="toggleMenu()">Faculty Coordinator</a></li>
-        <li><a href="#events23" onclick="toggleMenu()">Events'23</a></li>
-        <li><a href="#events24" onclick="toggleMenu()">Events'24</a></li>
-        <li><a href="#gravitas23" onclick="toggleMenu()">Gravitas'23</a></li>
-        <li><a href="#gravitas24" onclick="toggleMenu()">Gravitas'24</a></li>
-        <li><a href="#riviera25" onclick="toggleMenu()">Riviera'25</a></li>
-        <li><a href="#achievements" onclick="toggleMenu()">Achievements</a></li>
-        <li><a href="#blogs" onclick="toggleMenu()">Blogs</a></li>
-        <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- Page sections remain unchanged -->
+  <nav id="menuNav">
+    <ul>
+      <li><a href="#about" onclick="toggleMenu()"><i class="fas fa-heartbeat"></i> About</a></li>
+      <li><a href="#board" onclick="toggleMenu()"><i class="fas fa-users"></i> Board Members</a></li>
+      <li><a href="#faculty" onclick="toggleMenu()"><i class="fas fa-chalkboard-teacher"></i> Faculty Coordinator</a></li>
+      <li><a href="#" onclick="toggleDropdown(event, 'events')"><i class="fas fa-calendar-alt"></i> Events ▾</a></li>
+      <ul id="events" class="dropdown" style="display:none;">
+        <li><a href="#events23" onclick="toggleMenu()">Events'23</a></li>
+        <li><a href="#events24" onclick="toggleMenu()">Events'24</a></li>
+      </ul>
+      <li><a href="#" onclick="toggleDropdown(event, 'gravitas')"><i class="fas fa-bolt"></i> Gravitas ▾</a></li>
+      <ul id="gravitas" class="dropdown" style="display:none;">
+        <li><a href="#gravitas23" onclick="toggleMenu()">Gravitas'23</a></li>
+        <li><a href="#gravitas24" onclick="toggleMenu()">Gravitas'24</a></li>
+      </ul>
+      <li><a href="#riviera25" onclick="toggleMenu()"><i class="fas fa-star"></i> Riviera'25</a></li>
+      <li><a href="#achievements" onclick="toggleMenu()"><i class="fas fa-trophy"></i> Achievements</a></li>
+      <li><a href="#blogs" onclick="toggleMenu()"><i class="fas fa-blog"></i> Blogs</a></li>
+      <li><a href="#contact" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <div class="section-box">
+      <h2>About</h2>
+      <p>Welcome to the Health Club at VIT! We promote well-being and awareness through engaging events and campaigns throughout the academic year.</p>
+      <div class="gallery-toggle">
+        <button onclick="toggleGallery('about-gallery')">Toggle Gallery</button>
+        <div id="about-gallery" class="gallery">
+          <img src="img1.jpg" alt="Gallery image 1">
+          <img src="img2.jpg" alt="Gallery image 2">
+          <img src="img3.jpg" alt="Gallery image 3">
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('navMenu');
+      const menu = document.getElementById('menuNav');
       menu.classList.toggle('show');
+    }
+    function toggleDropdown(e, id) {
+      e.preventDefault();
+      const dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+    function toggleGallery(id) {
+      const gallery = document.getElementById(id);
+      if (gallery.style.display === 'grid') {
+        gallery.style.display = 'none';
+      } else {
+        gallery.style.display = 'grid';
+      }
     }
   </script>
 </body>
