@@ -94,11 +94,18 @@
     section {
       padding: 100px 20px 60px;
       min-height: 80vh;
-      animation: fadeIn 1s ease-in;
+      animation: fadeInUp 1s ease-in;
+      animation-fill-mode: both;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .section-box {
       background: #fff;
@@ -145,6 +152,9 @@
         font-size: 16px;
         padding: 6px 10px;
       }
+      section {
+        padding: 80px 10px 40px;
+      }
     }
   </style>
 </head>
@@ -159,8 +169,8 @@
   <nav id="menuNav">
     <ul>
       <li><a href="#about" onclick="toggleMenu()"><i class="fas fa-heartbeat"></i> About</a></li>
-      <li><a href="#board" onclick="toggleMenu()"><i class="fas fa-users"></i> Board Members</a></li>
-      <li><a href="#faculty" onclick="toggleMenu()"><i class="fas fa-chalkboard-teacher"></i> Faculty Coordinator</a></li>
+      <li><a href="#board-members" onclick="toggleMenu()"><i class="fas fa-users"></i> Board Members</a></li>
+      <li><a href="#faculty-coordinator" onclick="toggleMenu()"><i class="fas fa-chalkboard-teacher"></i> Faculty Coordinator</a></li>
       <li><a href="#" onclick="toggleDropdown(event, 'events')"><i class="fas fa-calendar-alt"></i> Events ▾</a></li>
       <ul id="events" class="dropdown" style="display:none;">
         <li><a href="#events23" onclick="toggleMenu()">Events'23</a></li>
